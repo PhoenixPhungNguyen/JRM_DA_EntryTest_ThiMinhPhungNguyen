@@ -50,10 +50,3 @@ BEGIN
         AND fi.facilityId IN (SELECT value FROM STRING_SPLIT(@facilities, ','))
     );
 END;
-
-----------------------
---**CALL PROCEDURE
-EXEC search_accommodations 
-    @capacity = 10, 
-    @amenities = 'A01,A03,A04',
-    @facilities = 'F01,F03,F04';
