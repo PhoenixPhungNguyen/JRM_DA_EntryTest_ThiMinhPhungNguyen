@@ -12,77 +12,67 @@ The dataset includes order details from 2015, capturing the exact **date and tim
 
 ## 🎯 Project Goals
 
-### 🔹 Key Performance Indicators (KPIs)
-- Total Revenue  
-- Total Quantity Sold  
-- Total Orders  
-- Average Order Value  
-- Average Pizzas per Order
-
-### 🔹 Sales Trends & Anomalies
-- Analyze daily, weekly, and monthly sales trends
-- Identify peak sales periods and seasonal patterns
-- Review performance by day of the week and time of day
-- Investigate spikes or drops in sales and identify potential causes
-
-### 🔹 Product Performance Analysis
-- Rank pizza categories by total quantity sold and revenue
-- Identify top 5 and bottom 5 pizzas by quantity and revenue
-
-### 🔹 Size & Ingredient Analysis
-- Analyze the relationship between pizza size and sales volume
-- Identify most and least popular ingredients by category
-
-### 🔹 Order & Ingredient Correlation
-- Explore correlations between specific ingredients and sales metrics
-- Segment using average reference lines and calculate correlation coefficients
-- Examine price vs. quantity correlations
-
-### 🔹 Order Frequency & Timing
+- Calculate total Revenue, Total Quantity Sold, Total Orders, Average 
+  Order Value, Average Pizzas per Order.
+- Analyze daily, weekly, quarterly and monthly order trends.
+- Investigate spikes or drops in sales and identify potential causes.
+- Identify peak sales periods, patterns and seasonal trends.
+- Rank pizza categories by total quantity sold and revenue.
+- Identify top 5 and bottom 5 pizzas by quantity and revenue.
+- Analyze the relationship between pizza size,category and sales volume
+- Analyze sales performance by day of the week and hour.
+- Explore the correlation between sale correlation by ingredient.
+- Explore the correlation between price and sales by category.
+- Examine price vs. quantity correlations, revenue vs. quantity correlations.
 - Analyze the ratio of single-item vs. multi-item orders
 - Calculate average, maximum, and minimum time intervals between orders
-
+- Analyze the ingredient popularity by pizza category.
 ---
 
 ## 🧮 Data Transformation
 
-The raw data was cleaned and organized into **7 relational tables** for efficient analysis:
-
-![Pizza Sales Dashboard](assets/modelView.png)
-
+The raw data was cleaned and organized into **6 relational tables** for efficient analysis:
 | Table Name     | Description |
 |----------------|-------------|
-| `Category`     | Category ID and category name |
-| `PizzaType`    | Pizza type ID, name, category ID, and ingredients |
-| `Pizza`        | Pizza ID, size, price, pizza type ID |
-| `Order`        | Order ID, order date and time |
-| `OrderDetails` | Order ID, pizza ID, and quantity |
+| `Pizza`     | Contains pizza ID, category ID, name |
+| `PizzaType`    | Contains category ID and name|
+| `Ingredients`        | Contains ingredients  |
+| `Ingredients Pizza`        | Contains pizza ID and ingredients  |
+| `Order`        | Contains order ID, date and time|
+| `OrderDetails` | Contains order ID, pizza ID, and size |
+
+## 🧮 Data Modelling
+
+<img src="assets/modelView.png" width="600px">
 
 ---
 
 ## 📈 Dashboard Insights (Power BI)
+**1. Sales Trend and Product Dashboard**
 
-![Pizza Sales Dashboard](assets/SalesTrend&Product_Dashboard.png)
+The total revenue increased from quarter 1 to quarter 2 with the top peak at $208K and decreased significantly in quarter 4. February, September, October, and December had the lowest revenue compared to other months. Revenue remained stable in weeks 2, 3, and 4, but showed a decline in week 1. Due to the calendar's limited data for weeks 5 and 6, revenue in these weeks is much lower than in other weeks. Friday had the highest revenue at $136.07K, followed by Thursday and Saturday. Sunday had the lowest revenue at $99.20K.
+The Classic category is the most popular in terms of orders and generates the highest revenue.
+The Thai Chicken pizza contributed the most to the increase in total revenue. Additionally, the Classic Deluxe was the best seller and the most frequently ordered. In contrast, the Brie Carre was the least ordered and sold pizza.
 
-Some of the key findings from the dashboard:
+<img src="assets/SalesTrend&Product_Dashboard.png" width="700px">
 
-- **Classic pizzas** generated the highest revenue and sales quantity  
-  → ~20K units, ~16.82B revenue  
-  → Source: *Total Quantity by Category*, *Total Revenue by Category*
+**2. Order Correlation Dashboard**
 
-- **Peak sales months**: **July**, **November**, and **January**  
-  → Source: *Total Revenue by Month*
-  
-![Pizza Sales Dashboard](assets/OrderCorrelation_Dashboard.png)
+Total orders increased from quarter 1 to quarter 3, with a dramatic decrease in quarter 4. Orders peaked in July with 1,935. Similar to revenue, the number of orders remained stable in weeks 2, 3, and 4, but showed a decline in week 1. Customers placed the most orders on Fridays.
+The highest number of orders occurred between 12 PM and 1 PM from Monday to Friday, and between 5 PM and 6 PM from Monday to Sunday.
+
+<img src="assets/OrderCorrelation_Dashboard.png" width="700px">
+
+**3. Size Ingredient and Order Frequency Timing Dashboard**
+
+<img src="assets/SizeIngredient&OrderFrequencyTiming_Dashboard.png" width="700px">
 
 - **Multi-item orders** accounted for **61.59%** of total orders  
   → Multi-item: 13.15K, Single-item: 8.2K  
-  → Source: *Order Type Breakdown*
-
-![Pizza Sales Dashboard](assets/SizeIngredient&OrderFrequencyTiming_Dashboard.png)
-
+  
 - **Most popular sizes**: L and XL pizzas  
-  → Source: *Total Quantity by Size and Category*
+  → The large size of pizza was the most preferred by customers.
+    The common price as $20.75 contributed the most in total revenue and total sales.
 
 - **Top Ingredients** (by frequency & quantity):
   - **Tomatoes**: 7,693 (Classic), 4,322 (Supreme), 907 (Veggie)
