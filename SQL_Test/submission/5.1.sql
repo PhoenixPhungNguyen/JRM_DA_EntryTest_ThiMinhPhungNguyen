@@ -2,15 +2,24 @@
 	--Show the percentage of total bookings for each type
 	--Include average length of stay
 	--Calculate total revenue for each type (TotalRevenue = PricePerNight * NumberOfNights - DiscountAmount)
-		count_booking AS
+		WITH countTotalBooking AS (
+            SELECT COUNT(*) AS count_total_booking
+            FROM Booking
+            WHERE dateTimeCancel IS NULL
+            AND checkOutTime IS NOT NULL
+        ),
+        count_booking AS
 		 (	
 			SELECT 	a.accommodationTypeId,
 					act.accommodationTypeName,
 					COUNT(b.bookingId) AS count_booking,
-					CAST(COUNT(b.bookingId) AS FLOAT) / ctb.count_total_booking*100 AS percent_booking,
+                    CAST(COUNT(b.bookingId) AS DECIMAL(10,2)) 
+                    / CAST(ctb.count_total_booking AS DECIMAL(10,2)) * 100 AS percent_booking,
 					SUM(DATEDIFF(DAY, b.reservedCheckInTime, b.checkOutTime)) AS num_of_night,
-					AVG(DATEDIFF(DAY, b.reservedCheckInTime, b.checkOutTime)) AS avg_length_of_stay,
-					SUM(DATEDIFF(DAY, b.reservedCheckInTime, b.checkOutTime) * a.pricePerNight - COALESCE(vc.discountValue, 0)) AS total_revenue
+					AVG(CAST(DATEDIFF(DAY, b.reservedCheckInTime, b.checkOutTime) AS DECIMAL(10,2))) AS avg_length_of_stay,
+					SUM(CAST(DATEDIFF(DAY, b.reservedCheckInTime, b.checkOutTime) AS DECIMAL(18,6)) 
+                    * CAST(a.pricePerNight AS DECIMAL(18,6)) 
+                    - CAST(COALESCE(vc.discountValue, 0) AS DECIMAL(18,6))) AS total_revenue
 			FROM [dbo].[Booking] b
 			JOIN 	countTotalBooking ctb ON  1=1
 			INNER JOIN Accommodation a ON b.accommodationId = a.accommodationId
@@ -27,18 +36,18 @@
 		)
 		
 		SELECT 
-			accommodationTypeId as acommodation_type_id,
-			accommodationTypeName as acommodation_type_name,	
-			count_booking,
-			percent_booking,
-			num_of_night,
-			avg_length_of_stay,
-			total_revenue,
-			avg_revenue,
+			--accommodationTypeId as acommodation_type_id,
+			accommodationTypeName AS AccommodationType,	
+			count_booking AS TotalBookings,
+			FORMAT(percent_booking,'N2') AS BookingPercentage,
+			--num_of_night,
+			FORMAT(avg_length_of_stay,'N2') AS AvgStayLength,
+			FORMAT(total_revenue,'N6') AS TotalRevenue,
+			--avg_revenue,
 		CASE 
 			WHEN total_revenue > avg_revenue THEN 'Above Average'
 			WHEN total_revenue < avg_revenue THEN 'Below Average'
 			ELSE 'Average'
-		END AS revenue_comparison
+		END AS RevenueStatus
 		FROM revenue_compare 
 		ORDER BY total_revenue DESC;

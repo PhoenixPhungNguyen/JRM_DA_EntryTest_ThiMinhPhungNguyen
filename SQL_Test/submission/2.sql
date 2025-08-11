@@ -13,7 +13,7 @@ CREATE TABLE City_District (
 
 -- 3. owner account
 CREATE TABLE Owner_Account (
-    ownerIdCardNumber NVARCHAR(20) PRIMARY KEY,
+    ownerIdCardNumber BIGINT PRIMARY KEY,
     userName NVARCHAR(100) NOT NULL,
     passWord NVARCHAR(100) NOT NULL,
     firstName NVARCHAR(100),
@@ -34,18 +34,18 @@ CREATE TABLE Accommodation_Type (
 CREATE TABLE Accommodation (
     accommodationId NVARCHAR(20) PRIMARY KEY,
     accommodationName NVARCHAR(255),
-    ownerIdCardNumber NVARCHAR(20) FOREIGN KEY REFERENCES Owner_Account(ownerIdCardNumber),
+    ownerIdCardNumber BIGINT FOREIGN KEY REFERENCES Owner_Account(ownerIdCardNumber),
     cityDistrictId INT FOREIGN KEY REFERENCES City_District(cityDistrictId),
     streetAddress NVARCHAR(255),
     accommodationTypeId NVARCHAR(10) FOREIGN KEY REFERENCES Accommodation_Type(accommodationTypeId),
     numberOfRooms INT,
     capacity INT,
-    pricePerNight DECIMAL(10,2)
+    pricePerNight FLOAT
 );
 
 -- 6. guest Account
 CREATE TABLE Guest_Account (
-    guestIdCardNumber NVARCHAR(20) PRIMARY KEY,
+    guestIdCardNumber BIGINT PRIMARY KEY,
     userName NVARCHAR(100) NOT NULL,
     passWord NVARCHAR(100) NOT NULL,
     firstName NVARCHAR(100),
@@ -81,23 +81,23 @@ CREATE TABLE Facilities_Included (
     accommodationId NVARCHAR(20),
     facilityId NVARCHAR(10),
     PRIMARY KEY (accommodationId, facilityId),
-    FOREIGN KEY (accommodationId) REFERENCES Accommodation(accommodationId),
+    FOREIGN KEY (accommodationId) REFERENCES accommodation(accommodationId),
     FOREIGN KEY (facilityId) REFERENCES Facilities(facilityId)
 );
 
 -- 11. Voucher Coupon
 CREATE TABLE Voucher_Coupon (
     vcCode NVARCHAR(20) PRIMARY KEY,
-    discountValue DECIMAL(10,2) NOT NULL,
+    discountValue FLOAT NOT NULL,
     discountUnit NVARCHAR(10),
-    validFrom DATE,
+    validFrome DATE,
     validTo DATE
 );
 
 -- 12. Booking
 CREATE TABLE Booking (
     bookingId NVARCHAR(20) PRIMARY KEY,
-    guestIdCardNumber NVARCHAR(20) FOREIGN KEY REFERENCES Guest_Account(guestIdCardNumber),
+    guestIdCardNumber BIGINT FOREIGN KEY REFERENCES Guest_Account(guestIdCardNumber),
     accommodationId NVARCHAR(20) FOREIGN KEY REFERENCES Accommodation(accommodationId),
     reservedCheckInTime DATETIME,
     checkInTime DATETIME,
@@ -116,9 +116,9 @@ CREATE TABLE Payment (
 
 -- 14. Feedback
 CREATE TABLE Feedback (
-    guestIdCardNumber NVARCHAR(20),
+    guestIdCardNumber BIGINT,
     accommodationId NVARCHAR(20),
-    rating INT,
+    rating NVARCHAR(5),
     comment NVARCHAR(1000),
     PRIMARY KEY (guestIdCardNumber, accommodationId),
     FOREIGN KEY (guestIdCardNumber) REFERENCES Guest_Account(guestIdCardNumber),
