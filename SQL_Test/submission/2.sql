@@ -90,7 +90,7 @@ CREATE TABLE Voucher_Coupon (
     vcCode NVARCHAR(20) PRIMARY KEY,
     discountValue FLOAT NOT NULL,
     discountUnit NVARCHAR(10),
-    validFrome DATE,
+    validFrom DATE,
     validTo DATE
 );
 

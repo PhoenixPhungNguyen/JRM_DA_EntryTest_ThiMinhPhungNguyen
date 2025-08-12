@@ -1,4 +1,5 @@
-	--Calculate the total number of bookings (non-cancelled) for each accommodation type
+	--5.1
+    --Calculate the total number of bookings (non-cancelled) for each accommodation type
 	--Show the percentage of total bookings for each type
 	--Include average length of stay
 	--Calculate total revenue for each type (TotalRevenue = PricePerNight * NumberOfNights - DiscountAmount)
@@ -6,7 +7,6 @@
             SELECT COUNT(*) AS count_total_booking
             FROM Booking
             WHERE dateTimeCancel IS NULL
-            AND checkOutTime IS NOT NULL
         ),
         count_booking AS
 		 (	
@@ -17,9 +17,9 @@
                     / CAST(ctb.count_total_booking AS DECIMAL(10,2)) * 100 AS percent_booking,
 					SUM(DATEDIFF(DAY, b.reservedCheckInTime, b.checkOutTime)) AS num_of_night,
 					AVG(CAST(DATEDIFF(DAY, b.reservedCheckInTime, b.checkOutTime) AS DECIMAL(10,2))) AS avg_length_of_stay,
-					SUM(CAST(DATEDIFF(DAY, b.reservedCheckInTime, b.checkOutTime) AS DECIMAL(18,6)) 
-                    * CAST(a.pricePerNight AS DECIMAL(18,6)) 
-                    - CAST(COALESCE(vc.discountValue, 0) AS DECIMAL(18,6))) AS total_revenue
+					SUM(DATEDIFF(DAY, b.reservedCheckInTime, b.checkOutTime) * a.pricePerNight) - SUM(
+                    COALESCE(vc.discountValue, 0)) AS total_revenue
+
 			FROM [dbo].[Booking] b
 			JOIN 	countTotalBooking ctb ON  1=1
 			INNER JOIN Accommodation a ON b.accommodationId = a.accommodationId

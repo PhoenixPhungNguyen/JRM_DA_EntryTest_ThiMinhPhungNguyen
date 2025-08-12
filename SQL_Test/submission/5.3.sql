@@ -2,7 +2,7 @@
 -- List the number of accommodations for each accommodation type as well as the total number of accommodations in each province
 -- Show the province name, accommodation types as column names (Homestay, Villa, etc.), and the total number of accommodations
 -- Sort by the total number of accommodations in descending order
-SELECT DISTINCT
+SELECT
     p.provinceName AS ProvinceName,
     --at.accommodationTypeName,
     --COUNT(*) AS count_accommodation,
