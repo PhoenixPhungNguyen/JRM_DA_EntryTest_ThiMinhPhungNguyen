@@ -35,41 +35,41 @@ The raw data was cleaned and organized into **6 relational tables** for efficien
 
 | Table Name          | Description                                     |
 |---------------------|-------------------------------------------------|
-| `Pizza`             | Contains pizza ID, category ID, and name        |
-| `PizzaType`         | Contains category ID and category name          |
-| `Ingredients`       | Contains list of ingredients                    |
-| `Ingredients_Pizza` | Maps pizza ID to ingredients                    |
-| `Order`             | Contains order ID, date, and time               |
-| `OrderDetails`      | Contains order ID, pizza ID, size, price, quantity |
+| `Pizzas`             | Contains pizza ID, category ID, and name        |
+| `Pizza_Types`         | Contains category ID and category name          |
+| `Dim_Ingredients`       | Contains list of ingredients                    |
+| `Ingredients_Pizzas` | Maps pizza ID to ingredients                    |
+| `Orders`             | Contains order ID, date, and time               |
+| `Order_Details`      | Contains order ID, pizza ID, size, price, quantity |
 
 ---
 
 ## 🧮 Data Modelling
 
-<img src="assets/modelView.png" width="600px">
+<img src="assets/modelView_1.png" width="600px">
 
 ---
 
 ## 📈 Dashboard Insights (Power BI)
 
 **1. KPI and Sales Dashboard**  
-- Total sales increased from Quarter 1 to Quarter 2, peaking at **$2.57 billion**, and then decreased significantly in Quarter 4  
+- Total sales increased from Quarter 1 to Quarter 2, peaking at **$208K**, and then decreased significantly in Quarter 4  
 - **February, September, October, and December** had the lowest sales compared to other months  
 - Sales remained stable in Weeks **2, 3, and 4**, but declined in Weeks **1, 5, and 6**  
-- **Friday** had the highest revenue at **$1.102 billion**, followed by **Thursday** and **Saturday**  
-- **Sunday** had the lowest revenue at **$568.992 million**  
+- **Friday** had the highest revenue at **$136.073K**, followed by **Thursday** and **Saturday**  
+- **Sunday** had the lowest revenue at **$99.203K**  
 - Peak order times were:  
   → **12 PM – 1 PM** (Monday to Friday)  
   → **5 PM – 6 PM** (Monday to Sunday)
 
-<img src="assets/KPI&Sales_Dashboard.png" width="700px">
+<img src="assets/KPI&Sales_Dashboard_1.png" width="700px">
 
 **2. Product Dashboard**  
 - **Large size** pizzas were the most preferred by customers  
 - In contrast, **XXL size** pizzas were the least preferred  
 - The **Classic** category ranked highest in both quantity (**~15k units**) and revenue (**~$3.2 billion**)
 
-<img src="assets/Product_Dashboard.png" width="700px">
+<img src="assets/Product_Dashboard_1.png" width="700px">
 
 **3. Order and Ingredient Dashboard**  
 - **Multi-item orders** accounted for **61.59%** (**13.15k orders**)  
