@@ -1,5 +1,9 @@
-import unittest
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from app.processing import ProcessPartA
+import unittest
 
 class TestProcessPartA(unittest.TestCase):
     def setUp(self):
