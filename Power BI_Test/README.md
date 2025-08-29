@@ -53,54 +53,56 @@ The raw data was cleaned and organized into **6 relational tables** for efficien
 ## 📈 Dashboard Insights (Power BI)
 
 **1. KPI and Sales Dashboard**  
-- Total sales increased from Quarter 1 to Quarter 2, peaking at **$208K**, and then decreased significantly in Quarter 4  
-- **February, September, October, and December** had the lowest sales compared to other months  
-- Sales remained stable in Weeks **2, 3, and 4**, but declined in Weeks **1, 5, and 6**  
-- **Friday** had the highest revenue at **$136.073K**, followed by **Thursday** and **Saturday**  
-- **Sunday** had the lowest revenue at **$99.203K**  
-- Peak order times were:  
-  → **12 PM – 1 PM** (Monday to Friday)  
-  → **5 PM – 6 PM** (Monday to Sunday)
+- Total sales increased from Quarter 1 to Quarter 2, peaking at **$208K**, and then decreased significantly in Quarter 4.
+→ Likely due to higher demand during summer and school holidays in Q2, while in Q4 customers shifted their spending to gifts and holiday-related dining.
+- Peak Seasons: Sales reached the highest in July (school holidays). **February, September, October, and December** had the lowest sales compared to other months due to typical off-season periods.
+→ July benefited from family gatherings and vacations, while the off-season months recorded less social dining activity.
+- Sales remained stable in Weeks **2, 3, and 4**, but declined in Weeks **1, 5, and 6**.
+→ Early weeks after holidays and month-end weeks often see reduced demand as customers adjust spending.
+- Sales often spike on weekends. **Friday** had the highest revenue at **$136.073K**, followed by **Thursday** and **Saturday** due to higher customer demand.
+→ Customer behavior shows higher spending toward the weekend, with Thursday promotions and social events also driving sales.
+- **Sunday** had the lowest revenue at **$99.203K**.
+→ Families typically stay at home and spend less on outside food.
+- Peak order times were:
+→ 12 PM – 1 PM (Monday to Friday)
+→ 5 PM – 6 PM (Monday to Sunday)
+→ These are standard lunch and dinner periods when both office workers and families tend to order more.
 
-<img src="assets/KPI&Sales_Dashboard_1.png" width="700px">
+  <img src="assets/KPI&Sales_Dashboard_2.png" width="700px">
 
 **2. Product Dashboard**  
-- **Large size** pizzas were the most preferred by customers  
-- In contrast, **XXL size** pizzas were the least preferred  
-- The **Classic** category ranked highest in both quantity (**~15k units**) and revenue (**~$3.2 billion**)
+- Overall, **Large size** pizzas were the most preferred by customers. In contrast, **XXL size** pizzas were the least preferred for all categories.  
+- The **Classic** category ranked highest in both quantity (**~15k units**) and revenue (**~$0.22 million**)
+- Quantity–Revenue Correlation: 0.54.There is a moderate positive relationship, meaning higher sales quantity tends to increase revenue.
+- Quantity–Price Correlation: -0.95. There is a strong negative relationship, meaning higher prices are associated with lower sales quantities.
 
-<img src="assets/Product_Dashboard_1.png" width="700px">
+
+<img src="assets/Product_Dashboard_2.png" width="700px">
+
+- The Thai Chicken pizza contributed the most to the increase in total revenue (43K). Additionally, the Classic Deluxe was the best seller and the most frequently ordered (quantity: 2.5K). In contrast, the Brie Carre was the least ordered and sold pizza (revenue: 11.6K,quantity: 490).
+
+<img src="assets/TopBottom5_Pizzas_Dashboard_2.png" width="700px">
 
 **3. Order and Ingredient Dashboard**  
 - **Multi-item orders** accounted for **61.59%** (**13.15k orders**)  
 - **Single-item orders** accounted for **38.41%** (**8.2k orders**)  
 - **Top 3 ingredients** by frequency and quantity were:
 
-  - **Tomato**: 7,693 (Classic), 4,322 (Supreme), 907 (Veggie)  
-  - **Red Peppers**: 8,680 (Chicken), 3,891 (Supreme)  
-  - **Chicken**: 8,618 (Chicken category)
+  - **Garlic**: Total pizza Frequency (57), Total Quantity Per Ingredients (27913).
+  - **Tomatoes**: Total pizza Frequency (56), Total Quantity Per Ingredients (27052).
+  - **Red Onions**: Total pizza Frequency (41), Total Quantity Per Ingredients (19834).
 
-<img src="assets/Order&Ingredient_Dashboard.png" width="700px">
+<img src="assets/Order&Ingredient_Dashboard_3.png" width="700px">
 
 ---
 
 ## ✅ Business Recommendations
 
 1. **Focus Marketing on Classic Pizzas**  
-   → Promote the best-performing category to boost already strong sales
+   - The Classic category is the best-performing, with ~15k units sold and ~$0.22M revenue. Promote these pizzas through advertising, bundles, and menu highlights to drive higher sales.
 
-2. **Launch Campaigns in July, November, and January**  
-   → Maximize revenue during known peak months with targeted promotions
+2. **Encourage Upgrades from Single-Item Orders**  
+   - 38.41% of orders are single-item. Implement combo deals, upsell campaigns, or limited-time offers to increase average order value.
 
-3. **Encourage Upgrades from Single-Item Orders**  
-   → 38.41% of orders are single-item  
-   → Offer **combo deals** or **limited-time upsell campaigns**
-
-4. **Review Bottom 5 Low-Performing Pizzas**  
-   → Consider **removing** or **reformulating** based on poor performance
-
-5. **Add Weekday & Time-of-Day Analysis**  
-   → Helps optimize **staffing**, **inventory**, and **campaign scheduling**
-
-6. **Create Ingredient-Based Promotions**  
-   → Highlight popular ingredients (e.g., **Tomato, Red Peppers, Chicken**) in special pizza variants or bundles
+3. **Weekend & Peak Time Promotions**  
+   - Sales peak on Thursday–Saturday, with high order volume at 12–1 PM and 5–6 PM. Run flash deals, family combos, or time-limited offers during these periods to maximize revenue.
