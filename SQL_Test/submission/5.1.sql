@@ -16,9 +16,12 @@
                     CAST(COUNT(b.bookingId) AS DECIMAL(10,2)) 
                     / CAST(ctb.count_total_booking AS DECIMAL(10,2)) * 100 AS percent_booking,
 					SUM(DATEDIFF(DAY, b.reservedCheckInTime, b.checkOutTime)) AS num_of_night,
-					AVG(CAST(DATEDIFF(DAY, b.reservedCheckInTime, b.checkOutTime) AS DECIMAL(10,2))) AS avg_length_of_stay,
-					SUM(DATEDIFF(DAY, b.reservedCheckInTime, b.checkOutTime) * a.pricePerNight) - SUM(
-                    COALESCE(vc.discountValue, 0)) AS total_revenue
+					AVG(CAST(DATEDIFF(DAY, b.checkInTime, b.checkOutTime) AS DECIMAL(10,2))) AS avg_length_of_stay,
+					SUM(DATEDIFF(DAY, b.checkInTime, b.checkOutTime) * a.pricePerNight - 
+                        CASE WHEN vc.discountUnit = '%' THEN (DATEDIFF(DAY, b.checkInTime, b.checkOutTime) * a.pricePerNight) * vc.discountValue / 100
+                        ELSE COALESCE(vc.discountValue, 0)
+                        END
+                    ) AS total_revenue
 
 			FROM [dbo].[Booking] b
 			JOIN 	countTotalBooking ctb ON  1=1
